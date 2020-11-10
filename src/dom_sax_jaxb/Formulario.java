@@ -46,6 +46,11 @@ public class Formulario extends javax.swing.JFrame {
 
         jButtonMostrarDOM.setText("Mostrar Contenido DOM");
         jButtonMostrarDOM.setEnabled(false);
+        jButtonMostrarDOM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarDOMActionPerformed(evt);
+            }
+        });
 
         jTextAreaDOM.setColumns(20);
         jTextAreaDOM.setRows(5);
@@ -103,14 +108,22 @@ public class Formulario extends javax.swing.JFrame {
         } else {
             if (gesDom.abrir_XML_DOM(ficheroXML) == -1) {
                 this.jLabelMensaje.setText("Error al crear el objeto DOM.");
-                 this.jButtonMostrarDOM.setEnabled(false);
+                this.jButtonMostrarDOM.setEnabled(false);
             } else {
                 this.jLabelMensaje.setText("Objeto DOM creado.");
                 this.jButtonMostrarDOM.setEnabled(true);
             }
         }
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButtonMostrarDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarDOMActionPerformed
+
+        String salida = "";
+        salida = gesDom.recorrerDOMyMostrar();
+        this.jTextAreaDOM.setText(salida);
+
+    }//GEN-LAST:event_jButtonMostrarDOMActionPerformed
 
     /**
      * @param args the command line arguments
