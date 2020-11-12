@@ -5,10 +5,16 @@
  */
 package dom_sax_jaxb;
 
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import java.io.File;
+import java.io.FileOutputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -37,11 +43,145 @@ public class DOM {
 
             doc = builder.parse(fichero);
             //Ahora doc apunta al arbol DOM listo para recorrerse
-            
+
             return 0;
         } catch (Exception e) {
             return -1;
         }
+    }
+
+    public String recorrerDOMyMostrar() {
+        String salida = "";
+        Node node;
+        String datos_nodo[] = null;
+        //Obtiene el primero nodo del DOM
+        Node raiz = doc.getFirstChild();
+        //Obtiene una lista de nodos con todos los nodos hijos del raiz.
+        NodeList nodelist = raiz.getChildNodes();
+
+        for (int i = 0; i < nodelist.getLength(); i++) {
+            node = nodelist.item(i);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                //Es un nodo libro
+
+                datos_nodo = procesarLibro(node);
+
+                salida = salida + "\n" + "Publicado en: " + datos_nodo[0];
+                salida = salida + "\n" + "El titulo es: " + datos_nodo[1];
+                salida = salida + "\n" + "El autor es: " + datos_nodo[2];
+                salida = salida + "\n --------------";
+            }
+        }
+        return salida;
+    }
+
+    private String[] procesarLibro(Node n) {
+
+        String datos[] = new String[3];
+        Node ntemp = null;
+
+        int contador = 1;
+
+        datos[0] = n.getAttributes().item(0).getNodeValue();
+
+        NodeList nodos = n.getChildNodes();
+
+        for (int i = 0; i < nodos.getLength(); i++) {
+            ntemp = nodos.item(i);
+
+            if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
+                datos[contador] = ntemp.getFirstChild().getNodeValue();
+                contador++;
+            }
+        }
+        return datos;
+    }
+
+    public int añadirDOM(String titulo, String autor, String año) {
+        try {
+            //Se crea un nodo tipo Element con nombre titulo(<Titulo>)
+            Node ntitulo = doc.createElement("Titulo");
+            //Se crea un nodo tipo texto con el titulo del libro
+            Node ntitulo_text = doc.createTextNode(titulo);
+            //Se añade el nodo de texto con el titulo como hijo del elemento Titulo
+            ntitulo.appendChild(ntitulo_text);
+
+            Node nautor = doc.createElement("Autor");
+            Node nautor_text = doc.createTextNode(autor);
+            nautor.appendChild(nautor_text);
+
+            Node nlibro = doc.createElement("Libro");
+            ((Element) nlibro).setAttribute("pubicado_en", año);
+
+            //Se añade a libro el nodo autor y titulo creados antes
+            nlibro.appendChild(ntitulo);
+            nlibro.appendChild(nautor);
+
+            //Se obtiene el primer nodo del documento y a é se le añade como
+            //hijo el nodo libre que ya tiene colgando todos sus hijos y atributos creados antes.
+            Node raiz = doc.getFirstChild();
+            raiz.appendChild(nlibro);
+
+            return 0;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int guardarDOMcomoFILE() {
+        try {
+            //Crea un fichero llamado salida.xml
+            File archivo_xml = new File("salida.xml");
+            //Especifica el formato de salida
+            OutputFormat format = new OutputFormat(doc);
+            //Especifica que la salida este indentada
+            format.setIndenting(true);
+            //Escribe el contenido en el FILE
+            XMLSerializer serializer = new XMLSerializer(new FileOutputStream(archivo_xml), format);
+            serializer.serialize(doc);
+
+            return 0;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    private void cambiarTituloLibro(Node node, String tituloAntiguo, String tituloNuevo) {
+        //Este metodo lee el titulo de un libro y lo intercambia por el titulo nuevo
+        String titulo;//string referente al titulo sacado del nodo
+        Node n;
+        //Cogelos los nodos hijos (titulo y autor) para luego elegir el titulo
+        NodeList nodos = node.getChildNodes();
+
+        //cogemos el titulo
+        n = nodos.item(1);//el titulo es el 1
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+
+            titulo = n.getFirstChild().getNodeValue();
+            //Si el titulo cogido del archivo xml es igual al escrito en titulo antiguo se ejecuta este if
+            if (tituloAntiguo.equals(titulo)) {
+                n.getFirstChild().setNodeValue(tituloNuevo);
+            }
+        }
+    }
+
+    public void modificarDOMparaTituloLibro(String tituloDOM_Antiguo, String tituloDOM_nuevo) {
+        //Este metodo recorre el DOM de libros XML y mira los titulos
+        Node node;
+
+        Node raiz = doc.getFirstChild();
+
+        NodeList nodeList = raiz.getChildNodes();
+        //recorre el dom pero solo los titulos
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            node = nodeList.item(i);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                cambiarTituloLibro(node, tituloDOM_Antiguo, tituloDOM_nuevo);
+            }
+        }
+
     }
 
 }
