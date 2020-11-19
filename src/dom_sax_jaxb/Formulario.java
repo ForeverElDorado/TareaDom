@@ -15,6 +15,7 @@ import javax.swing.JFileChooser;
 public class Formulario extends javax.swing.JFrame {
 
     DOM gesDom = new DOM();
+    SAX gesSAX = new SAX();
 
     /**
      * Creates new form Formulario
@@ -49,9 +50,11 @@ public class Formulario extends javax.swing.JFrame {
         jTextFieldTituloAntiguo = new javax.swing.JTextField();
         jTextFieldTituloNuevo = new javax.swing.JTextField();
         jButtonModificarTitulo = new javax.swing.JButton();
+        jButtonMostrarSAX = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jAbrirDOM = new javax.swing.JMenuItem();
+        jAbrirSAX = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,16 +100,37 @@ public class Formulario extends javax.swing.JFrame {
 
         jButtonModificarTitulo.setText("Modificar");
         jButtonModificarTitulo.setEnabled(false);
+        jButtonModificarTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarTituloActionPerformed(evt);
+            }
+        });
+
+        jButtonMostrarSAX.setText("Mostrar Contenido SAX");
+        jButtonMostrarSAX.setEnabled(false);
+        jButtonMostrarSAX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarSAXActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Ficheros XML");
 
-        jMenuItem1.setText("Abrir DOM");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jAbrirDOM.setText("Abrir DOM");
+        jAbrirDOM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jAbrirDOMActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jAbrirDOM);
+
+        jAbrirSAX.setText("Abrir SAX");
+        jAbrirSAX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAbrirSAXActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jAbrirSAX);
 
         jMenuBar1.add(jMenu1);
 
@@ -161,7 +185,11 @@ public class Formulario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonModificarTitulo)))
                         .addGap(0, 64, Short.MAX_VALUE))
-                    .addComponent(jButtonMostrarDOM))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonMostrarDOM)
+                        .addGap(66, 66, 66)
+                        .addComponent(jButtonMostrarSAX)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -171,7 +199,9 @@ public class Formulario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelMensaje)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonMostrarDOM)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonMostrarDOM)
+                            .addComponent(jButtonMostrarSAX))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -206,7 +236,7 @@ public class Formulario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jAbrirDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAbrirDOMActionPerformed
 
         File ficheroXML;
         ficheroXML = dialogoSeleccionarFichero();
@@ -219,15 +249,19 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonMostrarDOM.setEnabled(false);
                 this.jButtonAñadir.setEnabled(false);
                 this.jButtonGuardar.setEnabled(false);
+                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonMostrarSAX.setEnabled(false);
             } else {
                 this.jLabelMensaje.setText("Objeto DOM creado.");
                 this.jButtonMostrarDOM.setEnabled(true);
                 this.jButtonAñadir.setEnabled(true);
                 this.jButtonGuardar.setEnabled(true);
+                this.jButtonModificarTitulo.setEnabled(true);
+                this.jButtonMostrarSAX.setEnabled(false);
             }
         }
 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jAbrirDOMActionPerformed
 
     private void jButtonMostrarDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarDOMActionPerformed
 
@@ -253,6 +287,43 @@ public class Formulario extends javax.swing.JFrame {
             this.jLabelMensaje.setText("Fichero guardado correctamente");
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonModificarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarTituloActionPerformed
+
+        gesDom.modificarDOMparaTituloLibro(jTextFieldTituloAntiguo.getText(), jTextFieldTituloNuevo.getText());
+        jLabelMensaje.setText("Titulo Modificado con Exito");
+
+    }//GEN-LAST:event_jButtonModificarTituloActionPerformed
+
+    private void jButtonMostrarSAXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarSAXActionPerformed
+        String salida = gesSAX.recorrerSAX();
+        this.jTextAreaDOM.setText(salida);
+    }//GEN-LAST:event_jButtonMostrarSAXActionPerformed
+
+    private void jAbrirSAXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAbrirSAXActionPerformed
+        File ficheroXML;
+        ficheroXML = dialogoSeleccionarFichero();
+
+        if (ficheroXML == null) {
+            jLabelMensaje.setText("Vuelve a seleccionar el fichero.");
+        } else {
+            if (gesSAX.abrir_XML_SAX(ficheroXML) == -1) {
+                this.jLabelMensaje.setText("Error al crear el objeto SAX.");
+                this.jButtonMostrarDOM.setEnabled(false);
+                this.jButtonAñadir.setEnabled(false);
+                this.jButtonGuardar.setEnabled(false);
+                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonMostrarSAX.setEnabled(false);
+            } else {
+                this.jLabelMensaje.setText("Ya se ha abierto el archivo para SAX.");
+                this.jButtonMostrarDOM.setEnabled(false);
+                this.jButtonAñadir.setEnabled(false);
+                this.jButtonGuardar.setEnabled(false);
+                this.jButtonModificarTitulo.setEnabled(true);
+                this.jButtonMostrarSAX.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jAbrirSAXActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,10 +361,13 @@ public class Formulario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jAbrirDOM;
+    private javax.swing.JMenuItem jAbrirSAX;
     private javax.swing.JButton jButtonAñadir;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonModificarTitulo;
     private javax.swing.JButton jButtonMostrarDOM;
+    private javax.swing.JButton jButtonMostrarSAX;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -302,7 +376,6 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMensaje;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDOM;
     private javax.swing.JTextField jTextFieldAutor;
