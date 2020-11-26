@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Libros xsi:noNameSpaceSchemaLocation="LibrosEsquema.xds"
+	xmlns:xsi="http://www.w3.org/2001/2001/XMLSchema-instance">
+	<Libro publicado_en="1838">
+		<Titulo>Oliver Twist</Titulo>
+		<Autor>Charles Dickens</Autor>
+		<Editorial>Barco De Vapor</Editorial>
+	</Libro>
+	<Libro publicado_en="2005">
+		<Titulo>El mar</Titulo>
+		<Autor>John Banville</Autor>
+		<Editorial>La Plancha De Vapor</Editorial>
+	</Libro>
+	<Libro publicado_en="1946">
+		<Titulo>El principito</Titulo>
+		<Autor>Antoine de Saint-Exupéry</Autor>
+		<Editorial>EL Tren De Vapor</Editorial>
+	</Libro>
+</Libros>

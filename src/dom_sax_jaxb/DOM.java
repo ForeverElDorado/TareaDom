@@ -173,7 +173,7 @@ public class DOM {
         Node raiz = doc.getFirstChild();
 
         NodeList nodeList = raiz.getChildNodes();
-        //recorre el DOM
+        //recorre el DOM (es como el recorrer DOM pero con un if extra y añadidos
         for (int i = 0; i < nodeList.getLength(); i++) {
             node = nodeList.item(i);
             //Aqui se ejecuta cambiarTituloLibro con el node del for
