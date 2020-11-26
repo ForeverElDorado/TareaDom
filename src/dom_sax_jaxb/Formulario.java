@@ -16,6 +16,7 @@ public class Formulario extends javax.swing.JFrame {
 
     DOM gesDom = new DOM();
     SAX gesSAX = new SAX();
+    JAXB gesJAXB = new JAXB();
 
     /**
      * Creates new form Formulario
@@ -51,10 +52,12 @@ public class Formulario extends javax.swing.JFrame {
         jTextFieldTituloNuevo = new javax.swing.JTextField();
         jButtonModificarTitulo = new javax.swing.JButton();
         jButtonMostrarSAX = new javax.swing.JButton();
+        jButtonMostrarJAXB = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jAbrirDOM = new javax.swing.JMenuItem();
         jAbrirSAX = new javax.swing.JMenuItem();
+        jAbrirJAXB = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +117,14 @@ public class Formulario extends javax.swing.JFrame {
             }
         });
 
+        jButtonMostrarJAXB.setText("Mostrar Contenido JAXB");
+        jButtonMostrarJAXB.setEnabled(false);
+        jButtonMostrarJAXB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarJAXBActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Ficheros XML");
 
         jAbrirDOM.setText("Abrir DOM");
@@ -132,6 +143,14 @@ public class Formulario extends javax.swing.JFrame {
         });
         jMenu1.add(jAbrirSAX);
 
+        jAbrirJAXB.setText("Abrir JAXB");
+        jAbrirJAXB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAbrirJAXBActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jAbrirJAXB);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -147,10 +166,10 @@ public class Formulario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
+                                .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
@@ -161,13 +180,15 @@ public class Formulario extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel2)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jButtonMostrarJAXB)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -178,19 +199,18 @@ public class Formulario extends javax.swing.JFrame {
                                             .addComponent(jTextFieldTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextFieldTituloAntiguo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(128, 128, 128)
+                                .addGap(98, 98, 98)
                                 .addComponent(jButtonGuardar)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonModificarTitulo)))
-                        .addGap(0, 64, Short.MAX_VALUE))
+                        .addContainerGap(93, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonMostrarDOM)
                         .addGap(66, 66, 66)
                         .addComponent(jButtonMostrarSAX)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(29, 29, 29))
+                        .addGap(0, 311, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +221,8 @@ public class Formulario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonMostrarDOM)
-                            .addComponent(jButtonMostrarSAX))
+                            .addComponent(jButtonMostrarSAX)
+                            .addComponent(jButtonMostrarJAXB))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -251,6 +272,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonGuardar.setEnabled(false);
                 this.jButtonModificarTitulo.setEnabled(false);
                 this.jButtonMostrarSAX.setEnabled(false);
+                this.jButtonMostrarJAXB.setEnabled(false);
             } else {
                 this.jLabelMensaje.setText("Objeto DOM creado.");
                 this.jButtonMostrarDOM.setEnabled(true);
@@ -258,6 +280,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonGuardar.setEnabled(true);
                 this.jButtonModificarTitulo.setEnabled(true);
                 this.jButtonMostrarSAX.setEnabled(false);
+                this.jButtonMostrarJAXB.setEnabled(false);
             }
         }
 
@@ -314,6 +337,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonGuardar.setEnabled(false);
                 this.jButtonModificarTitulo.setEnabled(false);
                 this.jButtonMostrarSAX.setEnabled(false);
+                this.jButtonMostrarJAXB.setEnabled(false);
             } else {
                 this.jLabelMensaje.setText("Ya se ha abierto el archivo para SAX.");
                 this.jButtonMostrarDOM.setEnabled(false);
@@ -321,9 +345,46 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonGuardar.setEnabled(false);
                 this.jButtonModificarTitulo.setEnabled(true);
                 this.jButtonMostrarSAX.setEnabled(true);
+                this.jButtonMostrarJAXB.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jAbrirSAXActionPerformed
+
+    private void jAbrirJAXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAbrirJAXBActionPerformed
+
+        File ficheroXML;
+        ficheroXML = dialogoSeleccionarFichero();
+
+        if (ficheroXML == null) {
+            jLabelMensaje.setText("Vuelve a seleccionar el fichero.");
+        } else {
+            if (gesJAXB.abrir_XML_JAXB(ficheroXML) == -1) {
+                this.jLabelMensaje.setText("Error al crear el objeto JAXB.");
+                this.jButtonMostrarDOM.setEnabled(false);
+                this.jButtonAñadir.setEnabled(false);
+                this.jButtonGuardar.setEnabled(false);
+                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonMostrarSAX.setEnabled(false);
+                this.jButtonMostrarJAXB.setEnabled(false);
+
+            } else {
+                this.jLabelMensaje.setText("Ya se ha abierto el archivo para JAXB.");
+                this.jButtonMostrarDOM.setEnabled(false);
+                this.jButtonAñadir.setEnabled(false);
+                this.jButtonGuardar.setEnabled(false);
+                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonMostrarSAX.setEnabled(false);
+                this.jButtonMostrarJAXB.setEnabled(true);
+            }
+        }
+
+
+    }//GEN-LAST:event_jAbrirJAXBActionPerformed
+
+    private void jButtonMostrarJAXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarJAXBActionPerformed
+        String salida = gesJAXB.recorrerJAXB();
+        this.jTextAreaDOM.setText(salida);
+    }//GEN-LAST:event_jButtonMostrarJAXBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,11 +423,13 @@ public class Formulario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jAbrirDOM;
+    private javax.swing.JMenuItem jAbrirJAXB;
     private javax.swing.JMenuItem jAbrirSAX;
     private javax.swing.JButton jButtonAñadir;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonModificarTitulo;
     private javax.swing.JButton jButtonMostrarDOM;
+    private javax.swing.JButton jButtonMostrarJAXB;
     private javax.swing.JButton jButtonMostrarSAX;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
