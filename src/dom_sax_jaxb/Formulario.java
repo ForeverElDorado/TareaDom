@@ -50,7 +50,7 @@ public class Formulario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldTituloAntiguo = new javax.swing.JTextField();
         jTextFieldTituloNuevo = new javax.swing.JTextField();
-        jButtonModificarTitulo = new javax.swing.JButton();
+        jButtonModificarID = new javax.swing.JButton();
         jButtonMostrarSAX = new javax.swing.JButton();
         jButtonMostrarJAXB = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -101,11 +101,11 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel5.setText("Titulo Nuevo:");
 
-        jButtonModificarTitulo.setText("Modificar");
-        jButtonModificarTitulo.setEnabled(false);
-        jButtonModificarTitulo.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModificarID.setText("Modificar");
+        jButtonModificarID.setEnabled(false);
+        jButtonModificarID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModificarTituloActionPerformed(evt);
+                jButtonModificarIDActionPerformed(evt);
             }
         });
 
@@ -204,7 +204,7 @@ public class Formulario extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonModificarTitulo)))
+                                .addComponent(jButtonModificarID)))
                         .addContainerGap(93, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonMostrarDOM)
@@ -250,7 +250,7 @@ public class Formulario extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jTextFieldTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonModificarTitulo)))
+                        .addComponent(jButtonModificarID)))
                 .addGap(98, 98, Short.MAX_VALUE))
         );
 
@@ -270,7 +270,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonMostrarDOM.setEnabled(false);
                 this.jButtonAñadir.setEnabled(false);
                 this.jButtonGuardar.setEnabled(false);
-                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonModificarID.setEnabled(false);
                 this.jButtonMostrarSAX.setEnabled(false);
                 this.jButtonMostrarJAXB.setEnabled(false);
             } else {
@@ -278,7 +278,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonMostrarDOM.setEnabled(true);
                 this.jButtonAñadir.setEnabled(true);
                 this.jButtonGuardar.setEnabled(true);
-                this.jButtonModificarTitulo.setEnabled(true);
+                this.jButtonModificarID.setEnabled(true);
                 this.jButtonMostrarSAX.setEnabled(false);
                 this.jButtonMostrarJAXB.setEnabled(false);
             }
@@ -311,12 +311,12 @@ public class Formulario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
-    private void jButtonModificarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarTituloActionPerformed
+    private void jButtonModificarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarIDActionPerformed
 
         gesDom.modificarDOMparaTituloLibro(jTextFieldTituloAntiguo.getText(), jTextFieldTituloNuevo.getText());
         jLabelMensaje.setText("Titulo Modificado con Exito");
 
-    }//GEN-LAST:event_jButtonModificarTituloActionPerformed
+    }//GEN-LAST:event_jButtonModificarIDActionPerformed
 
     private void jButtonMostrarSAXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarSAXActionPerformed
         String salida = gesSAX.recorrerSAX();
@@ -335,7 +335,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonMostrarDOM.setEnabled(false);
                 this.jButtonAñadir.setEnabled(false);
                 this.jButtonGuardar.setEnabled(false);
-                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonModificarID.setEnabled(false);
                 this.jButtonMostrarSAX.setEnabled(false);
                 this.jButtonMostrarJAXB.setEnabled(false);
             } else {
@@ -343,7 +343,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonMostrarDOM.setEnabled(false);
                 this.jButtonAñadir.setEnabled(false);
                 this.jButtonGuardar.setEnabled(false);
-                this.jButtonModificarTitulo.setEnabled(true);
+                this.jButtonModificarID.setEnabled(true);
                 this.jButtonMostrarSAX.setEnabled(true);
                 this.jButtonMostrarJAXB.setEnabled(false);
             }
@@ -363,7 +363,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonMostrarDOM.setEnabled(false);
                 this.jButtonAñadir.setEnabled(false);
                 this.jButtonGuardar.setEnabled(false);
-                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonModificarID.setEnabled(false);
                 this.jButtonMostrarSAX.setEnabled(false);
                 this.jButtonMostrarJAXB.setEnabled(false);
 
@@ -372,7 +372,7 @@ public class Formulario extends javax.swing.JFrame {
                 this.jButtonMostrarDOM.setEnabled(false);
                 this.jButtonAñadir.setEnabled(false);
                 this.jButtonGuardar.setEnabled(false);
-                this.jButtonModificarTitulo.setEnabled(false);
+                this.jButtonModificarID.setEnabled(false);
                 this.jButtonMostrarSAX.setEnabled(false);
                 this.jButtonMostrarJAXB.setEnabled(true);
             }
@@ -427,7 +427,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JMenuItem jAbrirSAX;
     private javax.swing.JButton jButtonAñadir;
     private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonModificarTitulo;
+    private javax.swing.JButton jButtonModificarID;
     private javax.swing.JButton jButtonMostrarDOM;
     private javax.swing.JButton jButtonMostrarJAXB;
     private javax.swing.JButton jButtonMostrarSAX;
